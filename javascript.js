@@ -7,7 +7,4 @@
 
 
 // let header = document.getElementById("main-header");
-// header.style.borderBottom ="solid 5px #908"
-
-let title = document.getElementsByClassName("title")[0]
-title.textContent="gjjv"
+header.style.borderBottom ="solid 5px #008"
