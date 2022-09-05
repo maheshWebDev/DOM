@@ -19,5 +19,12 @@ function addToLocal(e){
     email : email
  }
  let myObjDeserialized = JSON.stringify(myObj);
- localStorage.setItem("userDetails",myObjDeserialized);
+ localStorage.setItem(myObj.email,myObjDeserialized);
+ showUserDetails(myObj);
+}
+
+function showUserDetails(user){
+    const paretNode = document.getElementById("list");
+    const child=`<li> ${user.name}-${user.email}</li>`
+    paretNode.innerHTML+=child;
 }
