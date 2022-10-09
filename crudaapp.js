@@ -19,6 +19,17 @@ let email = document.querySelector("#email").value;
 function showOnScreen(res){
     let list = document.querySelector("#list")
     let add = ""
-    add +=`<li>${res.name}-${res.email}</li><button>Delete</button><button>Edit</button>`
-    list.innerHTML = add
+    add = `<li>${res.name}-${res.email}<button>Delete</button><button>Edit</button></li>`
+    list.innerHTML += add
 }
+
+window.addEventListener("DOMContentLoaded", () => {
+
+    axios.get("https://crudcrud.com/api/f67df1ec46a6460e9466bd7f061bfdb4/fromData/")
+    .then((res)=>{ for(let i=0;i<res.data.length;i++){
+        showOnScreen(res.data[i])
+    }
+        })
+    .catch((err)=>{console.log(err)})
+    
+})
