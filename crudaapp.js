@@ -1,7 +1,7 @@
 
 let from = document.querySelector("#myform")
 from.addEventListener("submit",post)
-
+// document.querySelector("#list").addEventListener("click",deleteUserDetails)
 
 function post(e){
     e.preventDefault();
@@ -19,7 +19,7 @@ let email = document.querySelector("#email").value;
 function showOnScreen(res){
     let list = document.querySelector("#list")
     let add = ""
-    add = `<li>${res.name}-${res.email}<button>Delete</button><button>Edit</button></li>`
+    add = `<li id=${res._id}>${res.name}-${res.email}<button onClick=deleteUser("${res._id}")>Delete</button><button>Edit</button></li>`
     list.innerHTML += add
 }
 
@@ -33,3 +33,20 @@ window.addEventListener("DOMContentLoaded", () => {
     .catch((err)=>{console.log(err)})
     
 })
+
+
+function deleteUser(userid){
+axios.delete(`https://crudcrud.com/api/f67df1ec46a6460e9466bd7f061bfdb4/fromData/${userid}`)
+    .then((res)=>{removeUser(userid)
+    })
+    .catch((err)=>{console.log(err)})
+    
+    }
+
+function removeUser(userid){
+    const parent =document.querySelector("#list")
+    const child = document.getElementById(userid);
+    if(child){
+        parent.removeChild(child)
+    }
+}
